@@ -9,11 +9,3 @@ class Post(models.Model):
 
 	def __str__(self):
 		return self.title
-
-'''
-CharField() - для хранения коротких строк, принимает один дополнительный аргумент
-максимальную длинну строки
-TextField() - для большого кол-ва текстовой информации
-DateTimeField(auto_now_add=False/True) - принимает дату и время, есть ещё DateField
-только с датой
-'''
