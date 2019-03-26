@@ -2,6 +2,34 @@
 
 {% block content %}
 	{% for post in posts %}
-		<h1>{{post.title}}</h1>
+		<div class="post_content">
+			<header>
+				<h1>
+					<a href="{% url 'blog:show' pk=post.pk %}">{{ post.title }}</a>
+				</h1>
+			</header>
+
+			<div class="post_body">
+				{{ post.body|safe|truncatechars_html:240 }}
+			</div>
+
+			<div class="post_desc">
+				<ul>
+					<li>
+						Author: <a class="post_author" target="_blank"
+						href="https://github.com/">{{ user.get_username }}</a>
+					</li>
+
+					<li>
+						{{ post.created_at|date:'d M | Y' }}
+					</li>
+
+					<li>
+						<a class="post_link" href="{% url 'blog:show' pk=post.pk %}"
+						title="Continue reading">Continue</a>
+					</li>
+				</ul>
+			</div>
+		</div>
 	{% endfor %}
 {% endblock %}

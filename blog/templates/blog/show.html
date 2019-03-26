@@ -1,0 +1,42 @@
+{% extends 'blog/application.html' %}
+
+{% block content %}
+	<div class="post_content">
+		<header>
+			<h1 class="post_title">{{ post.title }}</h1>
+		</header>
+
+		<div>
+			<div class="post_desc">
+				<ul>
+					<li>
+						Author: <a class="post_author" target="_blank" 
+						href="https://github.com/">{{ user.get_username }}</a> 
+					</li>
+					
+					<li>
+						{{ post.created_at|date:'d M | Y' }}
+					</li>
+
+					<li>
+						<a class="post_link" href="/">Back</a>
+					</li>
+				</ul>
+			</div>
+
+			<hr class="post_hr_id">
+		</div>
+
+		<div class="post_body_id">
+			{{ post.body|safe }}
+		</div>
+
+		<footer>
+			<hr class="post_footer_hr_id">	
+
+			<div>
+				<a href="/" class="link_to_main">Fatal</a> - 2018
+			</div>
+		</footer>
+	</div>
+{% endblock %}
