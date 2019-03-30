@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<meta charset="utf-8">
 		<title></title>
 	</head>
 
 	<body>
+		<header class="main_header">
+			<h1 class="main_title"><a href="/" class="link_to_main">Fatal</a></h1>
+		</header>
+
 		{% if user.is_authenticated %}
 			<header class="auth_header">
 				<a href="{% url 'blog:new' %}">New</a>
@@ -13,6 +17,8 @@
 			</header>
 		{% endif %}
 
-		{% block content %} {% endblock %}
+		<div class="container">
+			{% block content %} {% endblock %}
+		</div>
 	</body>
 </html>
