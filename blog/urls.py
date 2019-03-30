@@ -8,6 +8,7 @@ urlpatterns = [
 	url(r'^post/(?P<pk>[0-9A-Fa-f-]+)$', views.show, name='show'),
 	url(r'^post/new$', views.new, name='new'),
 	url(r'^post/update/(?P<pk>[0-9A-Fa-f-]+)$', views.update, name='update'),
+	url(r'^post/del/(?P<pk>[0-9A-Fa-f-]+)$', views.delete, name='delete'),
 
 	url(r'^login/$', auth_views.LoginView.as_view(template_name='blog/login.html'), name='login'),
 	url(r'^logout/$', views.logout_view, name='logout'),

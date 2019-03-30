@@ -34,6 +34,10 @@ def update(request, pk):
 
 	return render(request, 'blog/update.html', {'form':form})
 
+def delete(request, pk):
+	post = Post.objects.get(id=pk).delete()
+	return redirect('blog:index')
+
 def logout_view(request):
 	logout(request)
 	return redirect('blog:index')
