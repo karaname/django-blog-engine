@@ -1,14 +1,20 @@
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 from django.shortcuts import render, redirect
+from django.core.paginator import Paginator
 from django.contrib.auth import logout
 from django.http import HttpResponse
 from blog.forms import PostForm
 from blog.models import Post
 
+
 class MainView(TemplateView):
 	def index(request):
 		posts = Post.objects.order_by('-created_at')
+
+		paginator = Paginator(posts, 4)
+		page = request.GET.get('page')
+		posts = paginator.get_page(page)
 		return render(request, 'blog/main/index.html', {'posts':posts})
 
 	def show(request, pk):
