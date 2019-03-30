@@ -1,0 +1,26 @@
+{% extends 'blog/application.html' %}
+
+{% block content %}
+	
+	{% if user.is_authenticated %}
+		<h1>Make your dreams come true ^_^</h1>
+	{% else %}
+		<div class="form_container">
+			<h1 class="form_title">Login</h1>
+
+			{% if form.errors %}
+				<div class="error_message">
+					<strong><small>Something was wrong</small></strong>
+				</div>
+			{% endif %}
+
+			<form action="{% url 'blog:login' %}" method="POST">
+				{% csrf_token %}
+				<input type="text" name="username" placeholder="Username" required>
+				<input type="password" name="password" placeholder="Password" required>
+				<button>Login</button>
+			</form>
+		</div>
+	{% endif %}
+
+{% endblock %}
