@@ -8,7 +8,7 @@
 	<body>
 		{% if user.is_authenticated %}
 			<header class="auth_header">
-				<a href="#">New</a>
+				<a href="{% url 'blog:new' %}">New</a>
 				<a href="{% url 'blog:logout' %}">Logout</a>
 			</header>
 		{% endif %}

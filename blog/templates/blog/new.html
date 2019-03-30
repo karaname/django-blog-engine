@@ -1,0 +1,14 @@
+{% extends 'blog/application.html' %}
+
+{% block content %}
+
+	<div class="form_container">
+		<form action="{% url 'blog:new' %}" method="POST">
+			{% csrf_token %}
+			<input type="text" name="title" maxlength="120" placeholder="Title" required>
+			<textarea name="body" placeholder="Body" required></textarea>
+			<button>Submit</button>
+		</form>
+	</div>
+
+{% endblock %}
