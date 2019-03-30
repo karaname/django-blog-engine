@@ -24,6 +24,15 @@ def new(request):
 			new_post.save()
 			return redirect('blog:index')
 
+def update(request, pk):
+	post = Post.objects.get(id=pk)
+
+	form = PostForm(request.POST or None, instance=post)
+	if form.is_valid():
+		form.save()
+		return redirect('blog:index')
+
+	return render(request, 'blog/update.html', {'form':form})
 
 def logout_view(request):
 	logout(request)

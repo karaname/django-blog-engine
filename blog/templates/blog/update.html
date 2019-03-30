@@ -1,0 +1,15 @@
+{% extends 'blog/application.html' %}
+
+{% block content %}
+	
+	<div class="form_container">
+		<form method="POST">
+			{% csrf_token %}
+			{{form.title}}
+			{{form.body}}
+			<button>Submit</button>
+		</form>
+		<a href="javascript:history.go(-1)"><button>Back</button></a>
+	</div>
+
+{% endblock %}

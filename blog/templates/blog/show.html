@@ -18,6 +18,16 @@
 						{{ post.created_at|date:'d M | Y' }}
 					</li>
 
+					{% if user.is_authenticated %}
+						<li>
+							<a class="post_link" href="{% url 'blog:update' post.id %}">Update</a>
+						</li>
+
+						<li>
+							<a class="post_link" href="#">Delete</a>
+						</li>
+					{% endif %}
+
 					<li>
 						<a class="post_link" href="/">Back</a>
 					</li>
