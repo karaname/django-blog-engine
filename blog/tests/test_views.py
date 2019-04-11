@@ -1,4 +1,6 @@
+from django.contrib.auth.models import User
 from django.test import TestCase
+from django.test import Client
 from django.urls import reverse
 from blog.models import Post
 
@@ -39,3 +41,9 @@ class PostListViewTest(TestCase):
 		self.assertTrue('posts' in resp.context)
 		self.assertEqual(len(resp.context['posts']), 4)
 		self.assertTrue(resp.context['posts'], 4)
+
+	def test_auth_url_new(self):
+		user = User.objects.create_user('testuser', '', 'foobario')
+		self.client.login(username='testuser', password='foobario')
+		resp = self.client.get('/post/new')
+		self.assertEqual(resp.status_code, 200)
