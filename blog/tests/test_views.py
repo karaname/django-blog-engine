@@ -45,5 +45,15 @@ class PostListViewTest(TestCase):
 	def test_auth_url_new(self):
 		user = User.objects.create_user('testuser', '', 'foobario')
 		self.client.login(username='testuser', password='foobario')
+
 		resp = self.client.get('/post/new')
 		self.assertEqual(resp.status_code, 200)
+
+		self.assertEqual(str(resp.context['user']), 'testuser')
+
+		self.assertTemplateUsed(resp, 'blog/main/new.html')
+
+	def test_redirect_if_not_logged(self):
+		resp = self.client.get('/post/new')
+		self.assertEqual(resp.status_code, 302)
+		self.assertRedirects(resp, '/accounts/login/?next=/post/new', status_code=302, target_status_code=404)
