@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
+from django.urls import reverse
 from django.test import TestCase
 from django.test import Client
-from django.urls import reverse
 from blog.models import Post
 
 class PostListViewTest(TestCase):
@@ -9,10 +9,13 @@ class PostListViewTest(TestCase):
 	def setUpTestData(cls):
 		number_of_posts = 8
 		for num_post in range(number_of_posts):
-			Post.objects.create(title='Title', body='Text')
+			cls.post = Post.objects.create(title='Title', body='Text')
+
+		cls.posts = Post.objects.all()
+		cls.user = User.objects.create_user('testuser', '', 'foobario')
 
 	def test_creation_check(self):
-		self.assertEqual(len(Post.objects.all()), 8)
+		self.assertEqual(len(self.posts), 8)
 
 	def test_view_url_exists_at_desired_location(self):
 		resp = self.client.get('/')
@@ -43,7 +46,6 @@ class PostListViewTest(TestCase):
 		self.assertTrue(resp.context['posts'], 4)
 
 	def test_auth_url_new(self):
-		user = User.objects.create_user('testuser', '', 'foobario')
 		self.client.login(username='testuser', password='foobario')
 
 		resp = self.client.get('/post/new')
@@ -57,3 +59,17 @@ class PostListViewTest(TestCase):
 		resp = self.client.get('/post/new')
 		self.assertEqual(resp.status_code, 302)
 		self.assertRedirects(resp, '/accounts/login/?next=/post/new', status_code=302, target_status_code=404)
+
+	def test_uuid(self):
+		for post in self.posts:
+			post_id = str(post.id)
+			self.assertEqual(len(post_id), 36)
+
+	def test_detail_url(self):
+		self.client.login(username='testuser', password='foobario')
+
+		resp = self.client.get(reverse('blog:show', kwargs={'pk':self.post.id}))
+		self.assertEqual(resp.status_code, 200)
+		self.assertTrue('post' in resp.context)
+
+		self.assertEqual(str(resp.context['user']), 'testuser')
