@@ -50,10 +50,23 @@ class PostListViewTest(TestCase):
 		self.assertTrue('form' in resp.context)
 		self.assertTemplateUsed(resp, 'blog/main/new.html')
 
-	def test_redirect_if_user_not_auth(self):
+	def test_redirect_if_user_not_auth_url_new(self):
 		resp = self.client.get(reverse('blog:new'))
 		self.assertEqual(resp.status_code, 302)
 		self.assertRedirects(resp, '/accounts/login/?next=/post/new', status_code=302, target_status_code=404)
+
+	def test_logged_user_url_update(self):
+		self.client.login(username='testuser', password='foobario')
+		resp = self.client.get(reverse('blog:update', kwargs={'pk':self.post.id}))
+		self.assertEqual(resp.status_code, 200)
+		self.assertEqual(str(resp.context['user']), 'testuser')
+		self.assertTrue('form' in resp.context)
+		self.assertTemplateUsed(resp, 'blog/main/update.html')
+
+	def test_redirect_if_user_not_auth_url_update(self):
+		resp = self.client.get(reverse('blog:update', kwargs={'pk':self.post.id}))
+		self.assertEqual(resp.status_code, 302)
+		self.assertRedirects(resp, '/accounts/login/?next=/post/update/' + str(self.post.id), status_code=302, target_status_code=404)
 
 	def test_each_obj_uuid(self):
 		for post in self.posts:
