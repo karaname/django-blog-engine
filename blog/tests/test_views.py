@@ -68,6 +68,12 @@ class PostListViewTest(TestCase):
 		self.assertEqual(resp.status_code, 302)
 		self.assertRedirects(resp, '/accounts/login/?next=/post/update/' + str(self.post.id), status_code=302, target_status_code=404)
 
+	def test_logged_user_url_delete(self):
+		self.client.login(username='testuser', password='foobario')
+		resp = self.client.get(reverse('blog:delete', kwargs={'pk':self.post.id}))
+		self.assertEqual(resp.status_code, 302)
+		self.assertRedirects(resp, reverse('blog:index'), status_code=302, target_status_code=200)
+
 	def test_each_obj_uuid(self):
 		for post in self.posts:
 			post_id = str(post.id)
