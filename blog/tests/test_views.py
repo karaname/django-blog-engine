@@ -78,3 +78,26 @@ class PostListViewTest(TestCase):
 		for post in self.posts:
 			post_id = str(post.id)
 			self.assertEqual(len(post_id), 36)
+
+	def test_url_login(self):
+		resp = self.client.get(reverse('blog:login'))
+		self.assertEqual(resp.status_code, 200)
+		self.assertTemplateUsed(resp, 'blog/auth/login.html')
+		self.assertTrue('form' in resp.context)
+
+	def test_redirect_if_user_auth_url_login(self):
+		self.client.login(username='testuser', password='foobario')
+		resp = self.client.get(reverse('blog:login'))
+		self.assertEqual(resp.status_code, 200)
+		self.assertContains(resp, '<h1>Make your dreams come true ^_^</h1>')
+
+	def test_url_logout(self):
+		self.client.login(username='testuser', password='foobario')
+		resp = self.client.get(reverse('blog:logout'))
+		self.assertEqual(resp.status_code, 302)
+		self.assertRedirects(resp, reverse('blog:index'), status_code=302, target_status_code=200)
+
+	def test_redirect_if_user_not_auth_url_logout(self):
+		resp = self.client.get(reverse('blog:logout'))
+		self.assertEqual(resp.status_code, 302)
+		self.assertRedirects(resp, '/accounts/login/?next=/logout/', status_code=302, target_status_code=404)
