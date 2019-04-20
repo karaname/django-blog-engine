@@ -112,3 +112,5 @@ from django.views.generic import TemplateView
 - ALLOWED_HOSTS *
 
 - Добавление стилей {% load static %} и favicon
+
+- Написание тестов
