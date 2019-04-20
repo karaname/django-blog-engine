@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.test import TestCase
 from django.test import Client
+from blog.forms import PostForm
 from blog.models import Post
 
 class PostListViewTest(TestCase):
@@ -47,8 +48,12 @@ class PostListViewTest(TestCase):
 		resp = self.client.get(reverse('blog:new'))
 		self.assertEqual(resp.status_code, 200)
 		self.assertEqual(str(resp.context['user']), 'testuser')
-		self.assertTrue('form' in resp.context)
 		self.assertTemplateUsed(resp, 'blog/main/new.html')
+
+		data = {'title':self.post.title, 'body':self.post.body}
+		form = PostForm(data=data)
+		self.assertTrue('form' in resp.context)
+		self.assertTrue(form.is_valid())
 
 	def test_redirect_if_user_not_auth_url_new(self):
 		resp = self.client.get(reverse('blog:new'))
@@ -60,8 +65,12 @@ class PostListViewTest(TestCase):
 		resp = self.client.get(reverse('blog:update', kwargs={'pk':self.post.id}))
 		self.assertEqual(resp.status_code, 200)
 		self.assertEqual(str(resp.context['user']), 'testuser')
-		self.assertTrue('form' in resp.context)
 		self.assertTemplateUsed(resp, 'blog/main/update.html')
+
+		data = {'title':self.post.title, 'body':self.post.body}
+		form = PostForm(data=data)
+		self.assertTrue('form' in resp.context)
+		self.assertTrue(form.is_valid())
 
 	def test_redirect_if_user_not_auth_url_update(self):
 		resp = self.client.get(reverse('blog:update', kwargs={'pk':self.post.id}))
