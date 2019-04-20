@@ -14,3 +14,7 @@ class PostModelTest(TestCase):
 	def test_title_max_length(self):
 		max_length = self.post._meta.get_field('title').max_length
 		self.assertEquals(max_length, 100)
+
+	def test_post_creation(self):
+		self.assertTrue(isinstance(self.post, Post))
+		self.assertEqual(self.post.__str__(), self.post.title)
