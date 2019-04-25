@@ -5,7 +5,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ulc@0kefq!0mb47&%10vq^&)b(a+!-0gaz2a7iswyh0ia9m78('
 
 DEBUG = False
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['fatal.website']
 
 # Application definition
 INSTALLED_APPS = [
@@ -14,6 +14,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
     'django_extensions', # show_urls
     'blog',
 ]
