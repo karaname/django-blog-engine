@@ -5,7 +5,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ulc@0kefq!0mb47&%10vq^&)b(a+!-0gaz2a7iswyh0ia9m78('
 
 DEBUG = False
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 INSTALLED_APPS = [
@@ -51,8 +51,12 @@ WSGI_APPLICATION = 'main.wsgi.application'
 # Database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+	'ENGINE': 'django.db.backends.postgresql_psycopg2',
+	'NAME': 'blog_db',
+	'USER': 'aboutname',
+	'PASSWORD' : 'h8hu3t9gj29',
+	'HOST' : '127.0.0.1',
+	'PORT' : '',
     }
 }
 
@@ -83,6 +87,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Redirect
 LOGIN_REDIRECT_URL = '/'
