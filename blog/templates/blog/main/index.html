@@ -14,21 +14,19 @@
 			</div>
 
 			<div class="post_desc">
-				<ul>
-					<li>
-						Author: <a class="post_author" target="_blank"
-						href="https://github.com/karaname">Kirill Rekhov</a>
-					</li>
+				<p>
+					Author: <a class="post_author" target="_blank"
+					href="https://github.com/karaname">Kirill Rekhov</a>
+				</p>
 
-					<li>
-						{{ post.created_at|date:'d M | Y' }}
-					</li>
+				<p>
+					{{ post.created_at|date:'d M | Y' }}
+				</p>
 
-					<li>
-						<a class="post_link" href="{% url 'blog:show' pk=post.pk %}"
-						title="Continue reading">Continue</a>
-					</li>
-				</ul>
+				<p>
+					<a class="post_link" href="{% url 'blog:show' pk=post.pk %}"
+					title="Continue reading">Continue</a>
+				</p>
 			</div>
 
 			<hr>
@@ -36,7 +34,7 @@
 	{% endfor %}
 
 	<div class="pagination">
-		<a href="?page=1" class="pagination_arrows"><<</a>
+		<a href="?page=1" class="pagination_arrows">&lt;&lt;</a>
 
 		{% if posts.number|add:'-2' > 1 %}
 			<span>&hellip;</span>
@@ -46,7 +44,7 @@
 			{% if posts.number == num %}
 				<strong><a href="?page={{num}}" class="pagination_numbers"
 					title="You here">{{num}}</a></strong>
-			{% elif num > posts.number|add:'-3' and num < posts.number|add:'3' %}
+			{% elif num > posts.number|add:'-2' and num < posts.number|add:'2' %}
 				<a href="?page={{num}}" class="pagination_numbers">{{num}}</a>
 			{% endif %}
 		{% endfor %}
@@ -55,6 +53,6 @@
 			<span>&hellip;</span>
 		{% endif %}
 
-		<a href="?page={{posts.paginator.num_pages}}" class="pagination_arrows">>></a>
+		<a href="?page={{posts.paginator.num_pages}}" class="pagination_arrows">&gt;&gt;</a>
 	</div>
 {% endblock %}

@@ -18,10 +18,6 @@ hr {
 	border: 1px solid #cccccc;
 }
 
-a {
-	text-decoration: none; 
-}
-
 ::selection {
 	background: #99ccff;
 }
@@ -53,17 +49,15 @@ a.link_to_main:hover {
 
 .auth_header {
 	float: right;
-	padding-right: 250px;
-	padding-top: 10px;
+	margin-right: 250px;
 }
 
 .auth_header a {
-	margin-left: 120px;
+	padding-left: 20px;
 	color: #1a1aff;
 }
 
 .auth_header a:hover {
-	text-decoration: underline;
 	color: #6666ff;
 }
 
@@ -87,6 +81,8 @@ a.link_to_main:hover {
 .pagination_numbers {
 	padding: 0 1em;
 	color: #000000;
+	text-decoration: none;
+
 }
 
 .pagination_arrows {
@@ -95,6 +91,7 @@ a.link_to_main:hover {
 	color: #666699;
 	border-radius: 6px;
 	border: 1px solid #cccccc;
+	text-decoration: none;
 }
 
 .pagination_numbers:hover,
@@ -109,32 +106,33 @@ a.link_to_main:hover {
 
 a.post_title {
 	color: #000000;
+	text-decoration: none;
 }
 
 .post_body {
-	padding: 25px 0px 0px;
+	padding-top: 25px;
 }
 
 .post_body, .post_body_id {
-	line-height: 150%;
+	line-height: 145%;
 }
 
-p:not(:first-child) {
+.post_body p:not(:first-child),
+.post_body_id p:not(:first-child) {
 	padding-top: 10px;
 }
 
-.post_desc > ul li {
+.post_desc {
+	padding: 25px 0 40px;
+}
+
+.post_desc > p {
 	display: inline-block;
 	color: #737373;
 }
 
-.post_desc > ul li:not(:first-child)::before {
+.post_desc > p:not(:first-child)::before {
 	content: '||';
-	padding: 0 5px;
-}
-
-.post_desc > ul {
-	padding: 25px 0 40px;
 }
 
 a.post_link {
@@ -159,7 +157,7 @@ a.post_author:hover {
 }
 
 .post_footer_hr_id {
-	margin: 20px 0 5px;
+	margin: 20px 0 2px;
 }
 
 /* forms */
@@ -182,10 +180,7 @@ form button:hover, a button:hover {
 
 .form_container {
 	display: table;
-	margin: 25px auto;
-	padding: 30px 60px;
-	border: 1px solid darkgray;
-	border-radius: 4px;
+	margin: 0 auto;
 }
 
 .form_title {
@@ -193,7 +188,7 @@ form button:hover, a button:hover {
 }
 
 .error_message {
-	padding: 12px 0 0;
+	padding-top: 12px;
 	color: #ff3333;
 }
 
@@ -216,7 +211,7 @@ form button:hover, a button:hover {
 }
 
 textarea {
-	width: 460px;
+	width: 740px;
 	height: 220px;
 	border: none;
 	resize: none;
