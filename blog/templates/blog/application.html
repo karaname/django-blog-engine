@@ -10,7 +10,231 @@
 		<link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
 		<link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
 		<link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
-		<link rel="stylesheet" type="text/css" href="{% static 'stylesheets/application.css' %}">
+		<style type="text/css">
+			/* reset */
+			*{
+				margin: 0;
+				padding: 0;
+			}
+
+			/* default */
+			html {
+				width: 100vw;
+				overflow-x: hidden;
+			}
+
+			body {
+				font-family: sans-serif;
+			}
+
+			hr {
+				border: 1px solid #cccccc;
+			}
+
+			::selection {
+				background: #99ccff;
+			}
+
+			/* header/application */
+			.main_header h1 {
+				display: inline-block;
+			}
+
+			.main_header {
+				padding: 30px 0;
+				text-align: center;
+				letter-spacing: 10px;
+				border-bottom: 1px solid #cccccc;
+			}
+
+			.main_title {
+				font-size: 2.8em;
+			}
+
+			a.link_to_main {
+				color: #bfbfbf;
+				font-weight: normal;
+			}
+
+			a.link_to_main:hover {
+				color: #b3b3b3;
+			}
+
+			.auth_header {
+				float: right;
+				margin-right: 250px;
+			}
+
+			.auth_header a {
+				padding-left: 20px;
+				color: #1a1aff;
+			}
+
+			.auth_header a:hover {
+				color: #6666ff;
+			}
+
+			.container {
+				padding: 2.5em 1em; 
+				margin: 0 auto;
+				max-width: 780px;
+				animation-name: container_animation;
+				animation-duration: 1.2s;
+			}
+
+			@keyframes container_animation {
+				from {opacity: 0;}
+				to {opacity: 1;}
+			}
+
+			/* pagination */
+			.pagination {
+				text-align: center;
+			}
+			.pagination_numbers {
+				padding: 0 1em;
+				color: #000000;
+				text-decoration: none;
+
+			}
+
+			.pagination_arrows {
+				margin: 0 0.2em;
+				padding: 0.5em 1.5em;
+				color: #666699;
+				border-radius: 6px;
+				border: 1px solid #cccccc;
+				text-decoration: none;
+			}
+
+			.pagination_numbers:hover,
+			.pagination_arrows:hover {
+				color: #1a1aff;
+			}
+
+			/* posts */
+			.post_content:not(:last-child) {
+				padding-bottom: 40px;
+			}
+
+			a.post_title {
+				color: #000000;
+				text-decoration: none;
+			}
+
+			.post_body {
+				padding-top: 25px;
+			}
+
+			.post_body, .post_body_id {
+				line-height: 145%;
+			}
+
+			.post_body p:not(:first-child),
+			.post_body_id p:not(:first-child) {
+				padding-top: 10px;
+			}
+
+			.post_desc {
+				padding: 25px 0 40px;
+			}
+
+			.post_desc > p {
+				display: inline-block;
+				color: #737373;
+			}
+
+			.post_desc > p:not(:first-child)::before {
+				content: '||';
+			}
+
+			a.post_link {
+				color: #1a1aff;
+			}
+
+			a.post_link:hover {
+				color: #6666ff;
+			}
+
+			a.post_author {
+				color: #000000;
+				font-weight: bold;
+			}
+
+			a.post_author:hover {
+				color: #4d4d4d;
+			}
+
+			.post_hr_id {
+				margin-bottom: 20px;
+			}
+
+			.post_footer_hr_id {
+				margin: 20px 0 2px;
+			}
+
+			/* forms */
+			input, button, textarea {
+				outline: none;
+			}
+
+			input, button, textarea {
+				border-radius: 4px;
+			}
+
+			form input:focus, form button:focus,
+			a button:focus {
+				border: 1px solid #a6a6a6;
+			}
+
+			form button:hover, a button:hover {
+				background: darkgray;
+			}
+
+			.form_container {
+				display: table;
+				margin: 0 auto;
+			}
+
+			.form_title {
+				text-align: center;
+			}
+
+			.error_message {
+				padding-top: 12px;
+				color: #ff3333;
+			}
+
+			.form_container input {
+				display: block;
+				width: 300px;
+				margin: 8px 0;
+				padding: 12px;
+				border: 1px solid #ccc;
+			}
+
+			.form_container button {
+				width: 100%;
+				cursor: pointer;
+				padding: 10px;
+				margin-top: 10px;
+				border: 1px solid #ccc;
+				transition-property: background;
+				transition-duration: 1s;
+			}
+
+			textarea {
+				width: 740px;
+				height: 220px;
+				border: none;
+				resize: none;
+				padding: 8px;
+				word-spacing: 3px;
+				border-radius: 6px;
+				font-family: sans-serif;
+				border: 1px solid #ccc;
+			}
+		</style>
 	</head>
 
 	<body>
