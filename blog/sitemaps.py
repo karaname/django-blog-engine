@@ -11,4 +11,4 @@ class StaticViewSitemap(Sitemap):
 
 class PostSitemap(Sitemap):
 	def items(self):
-		return Post.objects.all()
+		return Post.objects.order_by('-created_at')

@@ -1,17 +1,17 @@
 from django.contrib.auth import views as auth_views
-from blog.views import MainView, AuthView
-from django.conf.urls import url
+from django.urls import path
+from blog import views
 
 app_name = 'blog'
 urlpatterns = [
-	# MainView
-	url(r'^$', MainView.index, name='index'),
-	url(r'^post/(?P<pk>[0-9A-Fa-f-]+)$', MainView.show, name='show'),
-	url(r'^post/new$', MainView.new, name='new'),
-	url(r'^post/update/(?P<pk>[0-9A-Fa-f-]+)$', MainView.update, name='update'),
-	url(r'^post/del/(?P<pk>[0-9A-Fa-f-]+)$', MainView.delete, name='delete'),
+	# main
+	path('', views.index, name='index'),
+	path('post/<pk>', views.show, name='show'),
+	path('post/create/', views.create, name='create'),
+	path('post/update/<pk>', views.update, name='update'),
+	path('post/del/<pk>', views.delete, name='delete'),
 
-	# AuthView
-	url(r'^login/$', auth_views.LoginView.as_view(template_name='blog/auth/login.html'), name='login'),
-	url(r'^logout/$', AuthView.logout_view, name='logout'),
+	# auth
+	path('login/', auth_views.LoginView.as_view(template_name='blog/auth/login.html'), name='login'),
+	path('logout/', views.logout_view, name='logout'),
 ]

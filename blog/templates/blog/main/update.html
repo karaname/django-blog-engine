@@ -1,14 +1,12 @@
 {% extends 'blog/application.html' %}
 
 {% block content %}
-	
-	<div class="form_container">
+	<div class="form-container">
 		<form method="POST">
 			{% csrf_token %}
-			{{form.title}}
-			{{form.body}}
+			{{ form.title }}
+			{{ form.body }}
 			<button>Submit</button>
 		</form>
 	</div>
-
 {% endblock %}

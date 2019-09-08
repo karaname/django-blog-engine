@@ -2,15 +2,13 @@
 {% block title %} Fatal Website - {{ post.created_at|date:'d M | Y' }} {% endblock %}
 
 {% block content %}
-	<div class="post_content">
-		<header>
-			<h1 class="post_title">{{ post.title }}</h1>
-		</header>
+	<div class="post-content">
+		<h1 class="post-title">{{ post.title }}</h1>
 
 		<div>
-			<div class="post_desc">
+			<div class="post-desc">
 				<p>
-					Author: <a class="post_author" target="_blank"
+					Author: <a class="post-author" target="_blank"
 					href="https://github.com/karaname">Kirill Rekhov</a>
 				</p>
 
@@ -19,27 +17,27 @@
 				</p>
 
 				{% if user.is_authenticated %}
-					<p><a class="post_link" href="{% url 'blog:update' post.id %}">Update</a></p>
-					<p><a class="post_link" href="{% url 'blog:delete' post.id %}">Delete</a></p>
+					<p><a class="post-link" href="{% url 'blog:update' post.id %}">Update</a></p>
+					<p><a class="post-link" href="{% url 'blog:delete' post.id %}">Delete</a></p>
 				{% endif %}
 
 				<p>
-					<a class="post_link" href="{{request.META.HTTP_REFERER}}">Back</a>
+					<a class="post-link" href="{{ request.META.HTTP_REFERER }}">Back</a>
 				</p>
 			</div>
 
-			<hr class="post_hr_id">
+			<hr class="post-hr-id">
 		</div>
 
-		<div class="post_body_id">
+		<div class="post-body-id">
 			{{ post.body|safe }}
 		</div>
 
 		<footer>
-			<hr class="post_footer_hr_id">
+			<hr class="post-footer-hr-id">
 
 			<div>
-				Fatal - 2019
+				Fatal Website - 2019
 			</div>
 		</footer>
 	</div>

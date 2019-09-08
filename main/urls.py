@@ -1,7 +1,6 @@
-from django.conf.urls import include, url
-
 from blog.sitemaps import PostSitemap, StaticViewSitemap
 from django.contrib.sitemaps.views import sitemap
+from django.urls import path, include
 
 sitemaps = {
 	'static': StaticViewSitemap,
@@ -9,6 +8,6 @@ sitemaps = {
 }
 
 urlpatterns = [
-	url(r'', include('blog.urls')),
-	url(r'^sitemap\.xml/$', sitemap, {'sitemaps':sitemaps})
+	path('', include('blog.urls')),
+	path('sitemap.xml', sitemap, {'sitemaps':sitemaps}),
 ]

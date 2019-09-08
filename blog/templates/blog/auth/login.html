@@ -2,15 +2,14 @@
 {% block title %} Login {% endblock %}
 
 {% block content %}
-	
 	{% if user.is_authenticated %}
-		<h1>Make your dreams come true ^_^</h1>
+		<h1>Done</h1>
 	{% else %}
-		<div class="form_container">
-			<h1 class="form_title">Login</h1>
+		<div class="form-container">
+			<h1 class="form-title">Login</h1>
 
 			{% if form.errors %}
-				<div class="error_message">
+				<div class="error-message">
 					<strong><small>Something was wrong</small></strong>
 				</div>
 			{% endif %}
@@ -23,5 +22,4 @@
 			</form>
 		</div>
 	{% endif %}
-
 {% endblock %}

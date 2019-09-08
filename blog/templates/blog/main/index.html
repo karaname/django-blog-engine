@@ -2,20 +2,18 @@
 
 {% block content %}
 	{% for post in posts %}
-		<div class="post_content">
-			<header>
-				<h1>
-					<a class="post_title" href="{% url 'blog:show' pk=post.pk %}">{{ post.title }}</a>
-				</h1>
-			</header>
+		<div class="post-content">
+			<h1>
+				<a class="post-title" href="{% url 'blog:show' pk=post.pk %}">{{ post.title }}</a>
+			</h1>
 
-			<div class="post_body">
-				{{ post.body|safe|truncatechars_html:800 }}
+			<div class="post-body">
+				{{ post.body|safe }}
 			</div>
 
-			<div class="post_desc">
+			<div class="post-desc">
 				<p>
-					Author: <a class="post_author" target="_blank"
+					Author: <a class="post-author" target="_blank"
 					href="https://github.com/karaname">Kirill Rekhov</a>
 				</p>
 
@@ -24,7 +22,7 @@
 				</p>
 
 				<p>
-					<a class="post_link" href="{% url 'blog:show' pk=post.pk %}"
+					<a class="post-link" href="{% url 'blog:show' pk=post.pk %}"
 					title="Continue reading">Continue</a>
 				</p>
 			</div>
@@ -33,26 +31,32 @@
 		</div>
 	{% endfor %}
 
-	<div class="pagination">
-		<a href="?page=1" class="pagination_arrows">&lt;&lt;</a>
-
-		{% if posts.number|add:'-2' > 1 %}
-			<span>&hellip;</span>
-		{% endif %}
-
-		{% for num in posts.paginator.page_range %}
-			{% if posts.number == num %}
-				<strong><a href="?page={{num}}" class="pagination_numbers"
-					title="You here">{{num}}</a></strong>
-			{% elif num > posts.number|add:'-2' and num < posts.number|add:'2' %}
-				<a href="?page={{num}}" class="pagination_numbers">{{num}}</a>
+	{% if posts.paginator.num_pages > 1 %}
+		<div class="pagination">
+			{% if posts.has_previous %}
+				<a href="?page={{ posts.previous_page_number }}" class="pagination-arrows">&lt;&lt;</a>
 			{% endif %}
-		{% endfor %}
 
-		{% if posts.paginator.num_pages > posts.number|add:'2' %}
-			<span>&hellip;</span>
-		{% endif %}
+			{% if posts.number|add:'-2' > 1 %}
+				<span>&hellip;</span>
+			{% endif %}
 
-		<a href="?page={{posts.paginator.num_pages}}" class="pagination_arrows">&gt;&gt;</a>
-	</div>
+			{% for num in posts.paginator.page_range %}
+				{% if posts.number == num %}
+					<strong><a href="?page={{ num }}" class="pagination-numbers"
+						title="You here">{{num}}</a></strong>
+				{% elif num > posts.number|add:'-2' and num < posts.number|add:'2' %}
+					<a href="?page={{ num }}" class="pagination-numbers">{{ num }}</a>
+				{% endif %}
+			{% endfor %}
+
+			{% if posts.paginator.num_pages > posts.number|add:'2' %}
+				<span>&hellip;</span>
+			{% endif %}
+
+			{% if posts.has_next %}
+				<a href="?page={{ posts.next_page_number }}" class="pagination-arrows">&gt;&gt;</a>
+			{% endif %}
+		</div>
+	{% endif %}
 {% endblock %}
