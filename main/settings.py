@@ -3,13 +3,12 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ulc@0kefq!0mb47&%10vq^&)b(a+!-0gaz2a7iswyh0ia9m78('
 
-DEBUG = True
+DEBUG = False
 
 if DEBUG:
     ALLOWED_HOSTS = ['*']
 else:
     ALLOWED_HOSTS = ['fatal.website']
-
 
 # Application definition
 INSTALLED_APPS = [
@@ -19,7 +18,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
-    'django_extensions',
     'blog',
 ]
 
@@ -60,17 +58,24 @@ WSGI_APPLICATION = 'main.wsgi.application'
 if DEBUG:
     DATABASES = {
         'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'blog_db',
-        'USER': 'kory',
-        'PASSWORD' : 'sss8vnb1',
-        'HOST' : '127.0.0.1',
-        'PORT' : '',
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'blog_db',
+            'USER': 'kory',
+            'PASSWORD' : 'sss8vnb1',
+            'HOST' : '127.0.0.1',
+            'PORT' : '5432',
         }
     }
 else:
     DATABASES = {
-        # server
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'db_blog',
+            'USER': 'hiowohgoq',
+            'PASSWORD' : 'PDh6iFZK0~nR',
+            'HOST' : '127.0.0.1',
+            'PORT' : '5432',
+        }
     }
 
 # Password validation

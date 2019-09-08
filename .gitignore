@@ -1,5 +1,6 @@
 .env/
+__pycache__
 migrations/
 db.sqlite3
-__pycache__
 deployment/
+static/
